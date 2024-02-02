@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
       domain: 'dev-hgt3pxxduftflrlo.us.auth0.com',
       clientId: 'VClVLVEV1X68ojkDjs3oTpowAu9EjE2v',
       authorizationParams: {
-        redirect_uri: 'https://damiano-maka.github.io/auth0/',
+        redirect_uri: 'https://dami-streaming.vercel.app/',
         audience: 'http://public-api/',
         scope:
           'openid profile email offline_access read:roles read:users read:logs ',
