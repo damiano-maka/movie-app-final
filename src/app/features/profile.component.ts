@@ -57,7 +57,7 @@ interface contactForm {
             (click)="
               auth.logout({
                 logoutParams: {
-                  returnTo: 'https://damiano-maka.github.io/auth0/'
+                  returnTo: 'https://dami-streaming.vercel.app'
                 }
               })
             "
