@@ -1,22 +1,52 @@
+import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { AuthService } from '@auth0/auth0-angular';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { WelcomeComponent } from '../core/welcome.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet, RouterLink, WelcomeComponent],
   template: `
-    <p>
-      home works!
-    </p>
+    @if (authSig()) {
+    <div
+      class="navbar justify-center gap-5"
+      style="background-color: var(--sfondo-nav);"
+    >
+      <button class="btn btn-neutral" routerLink="movies">Movies</button>
+      <button class="btn btn-neutral" routerLink="series">Series</button>
+    </div>
+    <div class="vh">
+      <router-outlet></router-outlet>
+    </div>
+    }@else {
+    <app-welcome />
+    }
   `,
-  styles: ``
+  styles: [
+    `
+      .vh {
+        min-height: 60vh;
+      }
+    `,
+  ],
 })
 export default class HomeComponent implements OnInit {
-  http = inject(HttpClient)
+  auth = inject(AuthService);
+  authSig = toSignal(this.auth.isAuthenticated$);
+  changeDetectorRef = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
-    this.http.get('https://jsonplaceholder.typicode.com/users')
-      .subscribe(res => console.log(res))
+    this.changeDetectorRef.detectChanges();
   }
 }
