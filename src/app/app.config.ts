@@ -8,15 +8,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBuOXA2dVh7Iim3oEZ_wLs4xmu6Sq7RIdw',
-  authDomain: 'lab-tv-movie.firebaseapp.com',
-  databaseURL:
-    'https://lab-tv-movie-default-rtdb.europe-west1.firebasedatabase.app',
-  projectId: 'lab-tv-movie',
-  storageBucket: 'lab-tv-movie.appspot.com',
-  messagingSenderId: '305543977569',
-  appId: '1:305543977569:web:cbde7a5377d0bdfee46820',
-  measurementId: 'G-58C8VE42GN',
+  //YOUR FIREBASE CONFIG GOES HERE 
 };
 
 export const appConfig: ApplicationConfig = {
